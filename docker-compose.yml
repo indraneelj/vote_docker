@@ -1,3 +1,4 @@
+version: "3.8"
 
 services:
   db:
@@ -17,7 +18,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: backend/Dockerfile.backend
+      dockerfile: Dockerfile.backend   # ✅ fixed path
     container_name: voterow-backend
     restart: always
     environment:
@@ -35,11 +36,11 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: voterow/Dockerfile.frontend
+      dockerfile: Dockerfile.frontend   # ✅ fixed path
     container_name: voterow-frontend
     restart: always
     ports:
-      - "3000:80"
+      - "5173:80"   # ✅ maps your React dev port to container
     depends_on:
       - backend
     networks:
